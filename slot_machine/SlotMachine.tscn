@@ -43,10 +43,24 @@ margin_bottom = 27.0
 text = "1"
 
 [node name="Button" type="Button" parent="."]
-margin_left = 58.0
-margin_top = 98.0
-margin_right = 137.0
-margin_bottom = 118.0
+margin_left = -13.0
+margin_top = 47.0
+margin_right = 66.0
+margin_bottom = 67.0
 text = "Press Me"
+
+[node name="outcome" type="Label" parent="."]
+margin_left = -16.0
+margin_top = -27.0
+margin_right = 61.0
+margin_bottom = -13.0
+text = "Spin to Win!"
+
+[node name="score" type="Label" parent="."]
+margin_left = 91.0
+margin_top = -66.0
+margin_right = 131.0
+margin_bottom = -48.0
+text = "0"
 
 [connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
