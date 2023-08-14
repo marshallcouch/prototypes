@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://dont_say_the_word.gd" type="Script" id=1]
+
+[node name="dont_say_the_word" type="Node2D"]
+position = Vector2( 63, 43 )
+script = ExtResource( 1 )
+
+[node name="team_one_up" type="Button" parent="."]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "+"
+
+[node name="team_one_down" type="Button" parent="."]
+margin_top = 29.0
+margin_right = 20.0
+margin_bottom = 49.0
+text = "-"
+
+[node name="team_two_up" type="Button" parent="."]
+margin_left = 339.0
+margin_top = 1.0
+margin_right = 359.0
+margin_bottom = 21.0
+text = "+"
+
+[node name="team_two_down" type="Button" parent="."]
+margin_left = 339.0
+margin_top = 32.0
+margin_right = 359.0
+margin_bottom = 52.0
+text = "-"
+
+[node name="team_one_score" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 16.0
+margin_right = 72.0
+margin_bottom = 30.0
+text = "Team 1 Score: 0"
+
+[node name="team_two_score" type="Label" parent="."]
+margin_left = 210.0
+margin_top = 17.0
+margin_right = 300.0
+margin_bottom = 31.0
+text = "Team 2 Score: 0"
+
+[node name="category_label" type="Label" parent="."]
+margin_left = 41.0
+margin_top = 162.0
+margin_right = 100.0
+margin_bottom = 180.0
+text = "Category:"
+
+[node name="next_category_button" type="Button" parent="."]
+margin_left = 209.0
+margin_top = 160.0
+margin_right = 310.0
+margin_bottom = 180.0
+text = "Next Category"
+
+[node name="word_label" type="Label" parent="."]
+margin_left = 41.0
+margin_top = 263.0
+margin_right = 100.0
+margin_bottom = 281.0
+text = "Category:"
+
+[node name="next_word_button" type="Button" parent="."]
+margin_left = 209.0
+margin_top = 261.0
+margin_right = 310.0
+margin_bottom = 281.0
+rect_pivot_offset = Vector2( 61, 10 )
+text = "Next Word"
+
+[node name="start_stop_round" type="Button" parent="."]
+margin_left = 105.0
+margin_top = 113.0
+margin_right = 206.0
+margin_bottom = 133.0
+rect_pivot_offset = Vector2( 61, 10 )
+text = "Start/Stop Round"
+
+[connection signal="button_down" from="team_one_up" to="." method="_on_team_one_up_button_down"]
+[connection signal="button_down" from="team_one_down" to="." method="_on_team_one_down_button_down"]
+[connection signal="button_down" from="team_two_up" to="." method="_on_team_two_up_button_down"]
+[connection signal="button_down" from="team_two_down" to="." method="_on_team_two_down_button_down"]
