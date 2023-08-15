@@ -4,6 +4,7 @@ extends Node2D
 
 var team1_score:int
 var team2_score:int
+var lists: Object
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +28,13 @@ func _on_team_two_down_button_down() -> void:
 	team2_score -= 1
 	update_team2label()
 
+func load_lists() -> void:
+	var file = File.new()
+	file.open("res://assets/gamelists.tres",File.READ)
+	var gamelists = file.get_as_text()
+	gamelists = gamelists.replace("[gd_resource type=\"Resource\" format=2]","").replace("[resource]","")
+	lists = JSON.parse(gamelists).result
+	
 
 	
 func update_team1label():
