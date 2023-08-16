@@ -1,6 +1,7 @@
 [gd_resource type="Resource" format=2]
-
-{   "Lists":
+{   
+    "Lists_Count":17,
+    "Lists":
     ["Animals",
     "Food",
     "TV Shows",
@@ -50,7 +51,6 @@
     "Hobbies and Activities":[],
     "Superheroes":[],
     "Video Games":[],
-    "Random":[]
-                       
+    "Random":[]            
 }
 [resource]
