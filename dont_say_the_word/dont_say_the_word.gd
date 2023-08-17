@@ -8,8 +8,10 @@ var lists: Dictionary
 var used_items: Dictionary
 var is_playing: bool = false
 var list_selected:int = -1
-
-
+var game_timer:Timer
+var speed_up:float = 0
+var last_beep_time:float = 0
+var duration
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,6 +19,9 @@ func _ready() -> void:
 	team2_score = 0
 	load_lists()
 	next_category()
+	game_timer = Timer.new()
+	game_timer.one_shot = true
+	$".".add_child(game_timer)
 	
 
 
@@ -45,6 +50,8 @@ func load_lists() -> void:
 
 
 func next_category() -> void: 
+	if is_playing:
+		return
 	if list_selected == lists["Lists_Count"]-1:
 		list_selected = 0
 	else:
@@ -64,3 +71,33 @@ func update_team2label():
 
 func _on_next_category_button_button_down() -> void:
 	next_category()
+
+
+func _on_start_stop_round_button_down() -> void:
+	if is_playing:
+		game_timer.stop()
+	else: 
+		duration = rand_range(45,90)
+		speed_up = duration * 0.2 
+		last_beep_time = duration 
+		game_timer.start(duration)
+	is_playing = !is_playing
+
+func _process(delta: float) -> void:
+	if is_playing:
+		if last_beep_time - 1 > game_timer.time_left:
+			last_beep_time = game_timer.time_left
+			beep()
+		elif speed_up > game_timer.time_left and last_beep_time - 0.25 > game_timer.time_left:
+			last_beep_time = game_timer.time_left
+			beep()
+		if game_timer.time_left < .1:
+			buzz()
+			is_playing = false
+			
+		
+func beep() -> void:
+	$beep.play()
+	
+func buzz() -> void:
+	$buzz.play()

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://dont_say_the_word.gd" type="Script" id=1]
+[ext_resource path="res://buzz.mp3" type="AudioStream" id=2]
+[ext_resource path="res://beep.mp3" type="AudioStream" id=3]
 
 [node name="dont_say_the_word" type="Node2D"]
 position = Vector2( 63, 59 )
@@ -85,8 +87,17 @@ margin_bottom = 249.0
 rect_pivot_offset = Vector2( 61, 10 )
 text = "Start/Stop Round"
 
+[node name="beep" type="AudioStreamPlayer" parent="."]
+pause_mode = 1
+physics_interpolation_mode = 1
+stream = ExtResource( 3 )
+
+[node name="buzz" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
 [connection signal="button_down" from="team_one_up" to="." method="_on_team_one_up_button_down"]
 [connection signal="button_down" from="team_one_down" to="." method="_on_team_one_down_button_down"]
 [connection signal="button_down" from="team_two_up" to="." method="_on_team_two_up_button_down"]
 [connection signal="button_down" from="team_two_down" to="." method="_on_team_two_down_button_down"]
 [connection signal="button_down" from="next_category_button" to="." method="_on_next_category_button_button_down"]
+[connection signal="button_down" from="start_stop_round" to="." method="_on_start_stop_round_button_down"]

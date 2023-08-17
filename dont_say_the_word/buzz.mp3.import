@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/buzz.mp3-f38196f81ee0ac3dd3c1c15426d97477.mp3str"
+
+[deps]
+
+source_file="res://buzz.mp3"
+dest_files=[ "res://.import/buzz.mp3-f38196f81ee0ac3dd3c1c15426d97477.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
