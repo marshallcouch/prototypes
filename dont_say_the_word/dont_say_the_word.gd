@@ -12,6 +12,7 @@ var game_timer:Timer
 var speed_up:float = 0
 var last_beep_time:float = 0
 var duration
+var selected_list
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -76,11 +77,16 @@ func _on_next_category_button_button_down() -> void:
 func _on_start_stop_round_button_down() -> void:
 	if is_playing:
 		game_timer.stop()
+		$word_label.text = "Word or Phrase: " 
 	else: 
 		duration = rand_range(45,90)
 		speed_up = duration * 0.2 
 		last_beep_time = duration 
 		game_timer.start(duration)
+		selected_list = lists[lists["Lists"][list_selected]]
+		randomize()
+		selected_list.shuffle()
+		get_next_word_or_phrase()
 	is_playing = !is_playing
 
 func _process(delta: float) -> void:
@@ -101,3 +107,19 @@ func beep() -> void:
 	
 func buzz() -> void:
 	$buzz.play()
+
+
+func _on_next_word_button_button_down() -> void:
+	if is_playing:
+		get_next_word_or_phrase()
+
+
+func get_next_word_or_phrase() -> void:
+	if selected_list.size() == 0:
+		selected_list = lists["Random"]
+		if selected_list.size() == 0:
+			$word_label.text = "Restart the app to refresh words or choose another category"
+		else:
+			$word_label.text = "Word or Phrase: " + selected_list.pop_front()
+	else:
+		$word_label.text = "Word or Phrase: " + selected_list.pop_front()

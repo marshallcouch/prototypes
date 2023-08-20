@@ -100,4 +100,5 @@ stream = ExtResource( 2 )
 [connection signal="button_down" from="team_two_up" to="." method="_on_team_two_up_button_down"]
 [connection signal="button_down" from="team_two_down" to="." method="_on_team_two_down_button_down"]
 [connection signal="button_down" from="next_category_button" to="." method="_on_next_category_button_button_down"]
+[connection signal="button_down" from="next_word_button" to="." method="_on_next_word_button_button_down"]
 [connection signal="button_down" from="start_stop_round" to="." method="_on_start_stop_round_button_down"]
