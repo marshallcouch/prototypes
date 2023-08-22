@@ -59,9 +59,9 @@ text = "Category:"
 
 [node name="next_category_button" type="Button" parent="."]
 margin_left = 81.0
-margin_top = 133.0
+margin_top = 159.0
 margin_right = 281.0
-margin_bottom = 183.0
+margin_bottom = 209.0
 text = "Next Category"
 
 [node name="word_label" type="Label" parent="."]
@@ -73,17 +73,17 @@ text = "Word:"
 
 [node name="next_word_button" type="Button" parent="."]
 margin_left = 82.0
-margin_top = 360.0
+margin_top = 377.0
 margin_right = 282.0
-margin_bottom = 410.0
+margin_bottom = 427.0
 rect_pivot_offset = Vector2( 61, 10 )
 text = "Next Word"
 
 [node name="start_stop_round" type="Button" parent="."]
 margin_left = 81.0
-margin_top = 199.0
+margin_top = 225.0
 margin_right = 281.0
-margin_bottom = 249.0
+margin_bottom = 275.0
 rect_pivot_offset = Vector2( 61, 10 )
 text = "Start/Stop Round"
 

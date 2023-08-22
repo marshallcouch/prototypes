@@ -48,6 +48,13 @@ func load_lists() -> void:
 	var gamelists = file.get_as_text()
 	gamelists = gamelists.replace("[gd_resource type=\"Resource\" format=2]","").replace("[resource]","")
 	lists = JSON.parse(gamelists).result
+	for i in lists["Lists_Count"]:
+		var array = lists[lists["Lists"][i]]
+		array.sort()
+		for j in range(array.size()-1,0,-1):
+			if array[j].to_upper() == array[j-1].to_upper():
+				array.pop_at(j)
+			
 
 
 func next_category() -> void: 
@@ -117,8 +124,9 @@ func _on_next_word_button_button_down() -> void:
 func get_next_word_or_phrase() -> void:
 	if selected_list.size() == 0:
 		selected_list = lists["Random"]
+		$category_label.text = "Category: Random (Ran out of Words/phrases\n in selected category)"
 		if selected_list.size() == 0:
-			$word_label.text = "Restart the app to refresh words or choose another category"
+			$word_label.text = "Restart the app to refresh words \nor choose another category"
 		else:
 			$word_label.text = "Word or Phrase: " + selected_list.pop_front()
 	else:
