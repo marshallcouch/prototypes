@@ -23,6 +23,8 @@ func _ready() -> void:
 	game_timer = Timer.new()
 	game_timer.one_shot = true
 	$".".add_child(game_timer)
+	get_tree().root.connect("size_changed",self,"_on_viewport_size_changed")
+	_on_viewport_size_changed()
 	
 
 
@@ -65,13 +67,13 @@ func next_category() -> void:
 	else:
 		list_selected += 1
 	
-	$category_label.text = "Category: " + lists["Lists"][list_selected]
+	$C/category_label.text = "Category: " + lists["Lists"][list_selected]
 	
 func update_team1label():
-	$team_one_score.text = "Team 1 Score: " + str(team1_score)
+	$C/team_one_score.text = "Team 1 Score: " + str(team1_score)
 
 func update_team2label():
-	$team_two_score.text = "Team 2 Score: " + str(team2_score)
+	$C/team_two_score.text = "Team 2 Score: " + str(team2_score)
 
 
 
@@ -84,7 +86,7 @@ func _on_next_category_button_button_down() -> void:
 func _on_start_stop_round_button_down() -> void:
 	if is_playing:
 		game_timer.stop()
-		$word_label.text = "Word or Phrase: " 
+		$C/word_label.text = "Word or Phrase: " 
 	else: 
 		duration = rand_range(45,90)
 		speed_up = duration * 0.2 
@@ -124,10 +126,16 @@ func _on_next_word_button_button_down() -> void:
 func get_next_word_or_phrase() -> void:
 	if selected_list.size() == 0:
 		selected_list = lists["Random"]
-		$category_label.text = "Category: Random (Ran out of Words/phrases\n in selected category)"
+		$C/category_label.text = "Category: Random (Ran out of Words/phrases\n in selected category)"
 		if selected_list.size() == 0:
-			$word_label.text = "Restart the app to refresh words \nor choose another category"
+			$C/word_label.text = "Restart the app to refresh words \nor choose another category"
 		else:
-			$word_label.text = "Word or Phrase: " + selected_list.pop_front()
+			$C/word_label.text = "Word or Phrase: " + selected_list.pop_front()
 	else:
-		$word_label.text = "Word or Phrase: " + selected_list.pop_front()
+		$C/word_label.text = "Word or Phrase: " + selected_list.pop_front()
+
+
+func _on_viewport_size_changed():
+	$C.rect_position = Vector2(
+		get_viewport().size.x *.5 - 140
+		,20)
