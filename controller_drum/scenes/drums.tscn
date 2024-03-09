@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cst4kd3wgymvs"]
+
+[ext_resource type="Script" path="res://scripts/Drums.gd" id="1_twe3t"]
+[ext_resource type="AudioStream" uid="uid://c0orixcisuhkd" path="res://assets/sounds/RD_K_10.wav" id="2_12wrl"]
+
+[node name="Drums" type="Node2D"]
+script = ExtResource("1_twe3t")
+
+[node name="Kick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_12wrl")
