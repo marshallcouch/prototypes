@@ -1,10 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://cst4kd3wgymvs"]
+[gd_scene load_steps=11 format=3 uid="uid://cst4kd3wgymvs"]
 
 [ext_resource type="Script" path="res://scripts/Drums.gd" id="1_twe3t"]
 [ext_resource type="AudioStream" uid="uid://c0orixcisuhkd" path="res://assets/sounds/RD_K_10.wav" id="2_12wrl"]
+[ext_resource type="AudioStream" uid="uid://b6pntks4r30tq" path="res://assets/sounds/RD_S_9.wav" id="3_wxikh"]
+[ext_resource type="AudioStream" uid="uid://dl458lunv7qxe" path="res://assets/sounds/RD_S_10.wav" id="4_a0wvy"]
+[ext_resource type="AudioStream" uid="uid://c0dumcgs3o4et" path="res://assets/sounds/RD_C_HH_10.wav" id="5_hb4es"]
+[ext_resource type="AudioStream" uid="uid://cmln2wr0oihd0" path="res://assets/sounds/RD_C_HH_6.wav" id="6_561di"]
+[ext_resource type="AudioStream" uid="uid://bhhrfh461wunl" path="res://assets/sounds/RD_C_R_7.wav" id="7_4580t"]
+[ext_resource type="AudioStream" uid="uid://yfuvd32mvedi" path="res://assets/sounds/RD_T_MT_7.wav" id="8_7y4re"]
+[ext_resource type="AudioStream" uid="uid://cynp547s5df3m" path="res://assets/sounds/RD_T_FT_5.wav" id="9_nlaag"]
+[ext_resource type="AudioStream" uid="uid://4qu5s00fl6vp" path="res://assets/sounds/RD_C_S_2.wav" id="10_lmha3"]
 
 [node name="Drums" type="Node2D"]
 script = ExtResource("1_twe3t")
 
 [node name="Kick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_12wrl")
+
+[node name="SnareLeft" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wxikh")
+
+[node name="SnareRight" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_a0wvy")
+
+[node name="HatOpen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hb4es")
+
+[node name="HatClosed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_561di")
+
+[node name="Crash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4580t")
+
+[node name="MidTom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7y4re")
+
+[node name="FloorTom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_nlaag")
+
+[node name="Splash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_lmha3")
