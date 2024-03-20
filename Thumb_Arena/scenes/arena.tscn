@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bom3hx1wtam3y"]
+
+[ext_resource type="Script" path="res://src/controls.gd" id="1_swcfp"]
+[ext_resource type="Texture2D" uid="uid://ujeaxqj2esds" path="res://icon.svg" id="2_0awsm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_efqi3"]
+radius = 67.0075
+
+[node name="Arena" type="Node2D"]
+
+[node name="Controls" type="Node2D" parent="."]
+script = ExtResource("1_swcfp")
+
+[node name="Player1" type="CharacterBody2D" parent="Controls"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Controls/Player1"]
+texture = ExtResource("2_0awsm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controls/Player1"]
+shape = SubResource("CircleShape2D_efqi3")
+
+[node name="Player2" type="CharacterBody2D" parent="Controls"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Controls/Player2"]
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(234, 0)
+texture = ExtResource("2_0awsm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controls/Player2"]
+position = Vector2(233, -1)
+shape = SubResource("CircleShape2D_efqi3")
