@@ -11,21 +11,23 @@ radius = 67.0075
 [node name="Controls" type="Node2D" parent="."]
 script = ExtResource("1_swcfp")
 
-[node name="Player1" type="CharacterBody2D" parent="Controls"]
+[node name="Players" type="Node2D" parent="Controls"]
+
+[node name="Player1" type="CharacterBody2D" parent="Controls/Players"]
 position = Vector2(300, 200)
 
-[node name="Sprite2D" type="Sprite2D" parent="Controls/Player1"]
+[node name="Sprite2D" type="Sprite2D" parent="Controls/Players/Player1"]
 texture = ExtResource("2_0awsm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Controls/Player1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controls/Players/Player1"]
 shape = SubResource("CircleShape2D_efqi3")
 
-[node name="Player2" type="CharacterBody2D" parent="Controls"]
+[node name="Player2" type="CharacterBody2D" parent="Controls/Players"]
 position = Vector2(500, 200)
 
-[node name="Sprite2D" type="Sprite2D" parent="Controls/Player2"]
+[node name="Sprite2D" type="Sprite2D" parent="Controls/Players/Player2"]
 self_modulate = Color(1, 0, 0, 1)
 texture = ExtResource("2_0awsm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Controls/Player2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controls/Players/Player2"]
 shape = SubResource("CircleShape2D_efqi3")
