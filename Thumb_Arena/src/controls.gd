@@ -3,6 +3,7 @@ extends Node2D
 const SPEED = 300
 const DEAD_ZONE = .15
 const MAX_ANALOG = .85
+@onready var players_node = $Players
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,8 +12,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for i in $Players.get_child_count():
-		player_movement(i)
+		for i in players_node.get_child_count():
+			player_movement(i)
 
 
 func player_movement(player_number: int = 0):
@@ -32,5 +33,5 @@ func player_movement(player_number: int = 0):
 		v = Vector2(x,y)/d
 	else:
 		v = Vector2(x,y)
-	$Players.get_child(player_number).velocity = v * SPEED
-	$Players.get_child(player_number).move_and_slide()
+	players_node.get_child(player_number).velocity = v * SPEED
+	players_node.get_child(player_number).move_and_slide()
