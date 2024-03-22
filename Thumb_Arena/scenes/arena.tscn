@@ -10,3 +10,5 @@ script = ExtResource("1_njcde")
 script = ExtResource("1_swcfp")
 
 [node name="Players" type="Node2D" parent="Controls"]
+
+[node name="Projectiles" type="Node2D" parent="."]
