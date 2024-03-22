@@ -1,21 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://v47yo8jcmqee"]
+[gd_scene load_steps=5 format=3 uid="uid://v47yo8jcmqee"]
 
 [ext_resource type="Texture2D" uid="uid://ujeaxqj2esds" path="res://icon.svg" id="1_2ymxq"]
 [ext_resource type="Script" path="res://src/player.gd" id="1_iaw8c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_efqi3"]
-radius = 67.0075
+radius = 57.0351
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_47vd3"]
+radius = 69.0507
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_iaw8c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_2ymxq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_efqi3")
 
 [node name="ReloadTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="HitBox" type="Area2D" parent="." groups=["Player"]]
+collision_layer = 2
+collision_mask = 13
+
+[node name="HitBoxCollision" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_47vd3")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(0, 1, 0, 1)
+offset_left = -71.0
+offset_top = 73.0
+offset_right = 72.0
+offset_bottom = 100.0
+value = 100.0
+
 [connection signal="timeout" from="ReloadTimer" to="." method="_shoot"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

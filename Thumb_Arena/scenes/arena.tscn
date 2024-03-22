@@ -12,3 +12,12 @@ script = ExtResource("1_swcfp")
 [node name="Players" type="Node2D" parent="Controls"]
 
 [node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Restart" type="Button" parent="."]
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 63.0
+offset_bottom = 37.0
+text = "Reset"
+
+[connection signal="button_up" from="Restart" to="." method="_on_restart_button_up"]

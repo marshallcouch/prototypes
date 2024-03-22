@@ -3,25 +3,25 @@
 [ext_resource type="Script" path="res://src/projectile.gd" id="1_vl56p"]
 [ext_resource type="Texture2D" uid="uid://dy0k6b0pkm4df" path="res://assets/whitesquare.png" id="2_y8tgr"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i5v5g"]
-radius = 3.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ci4w"]
+radius = 6.0
 
-[node name="Projectile" type="CharacterBody2D"]
+[node name="Projectile" type="CharacterBody2D" groups=["Projectile"]]
 z_index = -1
+collision_layer = 4
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_vl56p")
 
 [node name="ProjectileSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_y8tgr")
 
-[node name="ProjectileArea" type="Area2D" parent="."]
-
-[node name="ProjectileCollision" type="CollisionShape2D" parent="ProjectileArea"]
-shape = SubResource("CircleShape2D_i5v5g")
-
 [node name="TimeToLive" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 4.0
 one_shot = true
 autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6ci4w")
 
 [connection signal="timeout" from="TimeToLive" to="." method="_on_timer_timeout"]

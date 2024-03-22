@@ -15,6 +15,22 @@ run/main_scene="res://scenes/arena.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=800
+
+[layer_names]
+
+2d_render/layer_1="Map"
+2d_render/layer_2="Player"
+2d_render/layer_3="Projectiles"
+2d_render/layer_4="Powerups"
+2d_physics/layer_1="Map"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Projectiles"
+2d_physics/layer_4="Powerups"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

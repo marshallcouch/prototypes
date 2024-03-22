@@ -15,3 +15,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+
+func _on_restart_button_up():
+	for player in players_node.get_children():
+		player.queue_free()
+	for projectile in $Projectiles.get_children():
+		projectile.queue_free()
+	_ready()
