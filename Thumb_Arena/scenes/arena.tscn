@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://src/arena.gd" id="1_njcde"]
 [ext_resource type="Script" path="res://src/controls.gd" id="1_swcfp"]
 
-[node name="Arena" type="Node2D"]
+[node name="Arena" type="Node"]
 script = ExtResource("1_njcde")
 
-[node name="Controls" type="Node2D" parent="."]
+[node name="Controls" type="Node" parent="."]
 script = ExtResource("1_swcfp")
 
-[node name="Players" type="Node2D" parent="Controls"]
+[node name="Players" type="Node" parent="Controls"]
 
-[node name="Projectiles" type="Node2D" parent="."]
+[node name="Projectiles" type="Node" parent="."]
 
 [node name="Menu" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
@@ -33,6 +33,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 22
 text = "Reset"
+
+[node name="Obstacles" type="Node" parent="."]
 
 [connection signal="button_up" from="Menu/Quit" to="." method="_on_quit_button_up"]
 [connection signal="button_up" from="Menu/Restart" to="." method="_on_restart_button_up"]

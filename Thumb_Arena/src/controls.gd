@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 const SPEED:int = 300
 const DEAD_ZONE:float = .15
