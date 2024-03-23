@@ -24,3 +24,7 @@ func _on_restart_button_up():
 	for projectile in $Projectiles.get_children():
 		projectile.queue_free()
 	_ready()
+
+
+func _on_quit_button_up():
+	get_tree().quit()

@@ -1,21 +1,23 @@
 [gd_scene load_steps=5 format=3 uid="uid://v47yo8jcmqee"]
 
-[ext_resource type="Texture2D" uid="uid://ujeaxqj2esds" path="res://icon.svg" id="1_2ymxq"]
 [ext_resource type="Script" path="res://src/player.gd" id="1_iaw8c"]
+[ext_resource type="Texture2D" uid="uid://dwen3l1gf8f37" path="res://assets/Player_Circle.svg" id="2_1r5pp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_efqi3"]
-radius = 57.0351
+radius = 29.1548
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_47vd3"]
-radius = 69.0507
+radius = 35.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+motion_mode = 1
 script = ExtResource("1_iaw8c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_2ymxq")
+texture = ExtResource("2_1r5pp")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
+z_index = 1
 shape = SubResource("CircleShape2D_efqi3")
 
 [node name="ReloadTimer" type="Timer" parent="."]
@@ -30,10 +32,11 @@ shape = SubResource("CircleShape2D_47vd3")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(0, 1, 0, 1)
-offset_left = -71.0
-offset_top = 73.0
-offset_right = 72.0
-offset_bottom = 100.0
+offset_left = -40.0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 12
 value = 100.0
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_shoot"]
