@@ -24,7 +24,7 @@ func _process(delta):
 		$Node/Player/Sprite2D.scale.x = -.5
 	$Node/Player.move_and_slide()
 	if $Node/Player.velocity != Vector2(0,0):
-		$Node/Player/Sprite2D.skew = sin(waddle)*.05
+		$Node/Player/Sprite2D.skew = sin(waddle*delta*50)*.05
 		waddle+=1
 	
 
