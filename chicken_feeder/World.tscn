@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp846on032mu6"]
+
+[ext_resource type="Script" path="res://World.gd" id="1_6pdd2"]
+[ext_resource type="Texture2D" uid="uid://x1mumu8sv1nj" path="res://chiken.png" id="2_webkd"]
+[ext_resource type="PackedScene" uid="uid://clevmomrl34qd" path="res://corn.tscn" id="3_dt4l6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_age1h"]
+radius = 34.0588
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m4wqo"]
+radius = 65.123
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6pdd2")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="Node"]
+position = Vector2(200, 200)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node/Player"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_webkd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Player"]
+shape = SubResource("CircleShape2D_age1h")
+
+[node name="Mouth" type="Area2D" parent="Node/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Player/Mouth"]
+shape = SubResource("CircleShape2D_m4wqo")
+
+[node name="Corns" type="Node" parent="Node"]
+
+[node name="corn" parent="Node/Corns" instance=ExtResource("3_dt4l6")]
+
+[node name="points" type="Label" parent="."]
+offset_left = 326.0
+offset_top = 5.0
+offset_right = 366.0
+offset_bottom = 28.0
+text = "0"
+
+[connection signal="area_entered" from="Node/Player/Mouth" to="." method="_on_mouth_area_entered"]

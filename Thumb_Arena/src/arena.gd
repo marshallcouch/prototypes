@@ -20,8 +20,6 @@ func _ready():
 func _process(delta):
 	pass
 
-
-
 func _on_restart_button_up():
 	for player in players_node.get_children():
 		player.queue_free()
