@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq1phd6p4c8i1"]
+
+[ext_resource type="Texture2D" uid="uid://dl76ysrtfvmp2" path="res://icon.svg" id="1_v12bx"]
+
+[node name="Node2D" type="Node2D"]
+self_modulate = Color(1, 1, 1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(74, 77)
+texture = ExtResource("1_v12bx")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = 188.0
+offset_top = 12.0
+offset_right = 679.0
+offset_bottom = 38.0
+text = "https://anthonycossins.com/posts/godot-transparent-windows/"

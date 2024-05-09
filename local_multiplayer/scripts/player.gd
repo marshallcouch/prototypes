@@ -1,1 +1,3 @@
 extends CharacterBody2D
+signal player_moved
+signal custom_signal

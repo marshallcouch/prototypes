@@ -33,6 +33,7 @@ shape = SubResource("CircleShape2D_m4wqo")
 [node name="Corns" type="Node" parent="Node"]
 
 [node name="corn" parent="Node/Corns" instance=ExtResource("3_dt4l6")]
+position = Vector2(500, 700)
 
 [node name="points" type="Label" parent="."]
 offset_left = 326.0
