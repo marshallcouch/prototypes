@@ -11,7 +11,5 @@ func _process(_delta):
 	pass
 
 
-
-
-func _on_player_one_area_body_entered(body):
-	pass # Replace with function body.
+func input(_event):
+	pass

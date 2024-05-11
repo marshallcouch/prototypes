@@ -17,7 +17,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _physics_process(_delta):
 	var i = 0
 	for player in players.get_children():
 		player_movement(player, i)
@@ -92,12 +92,11 @@ func _on_player_two_area_body_entered(body):
 		var new_vect = Vector2(ball.position.x - (player_two.position.x+75), ball.position.y - player_two.position.y)
 		new_vect = new_vect/sqrt(new_vect.x**2 + new_vect.y**2)
 		ball.velocity = new_vect * (ball_speed + ball_speed_delta)
-		ball_speed_delta += 10
+		ball_speed_delta += 50
 
 func _on_player_one_area_body_entered(body):
 	if body.is_in_group("ball"):
 		var new_vect = Vector2(ball.position.x - (player_one.position.x-75), ball.position.y - player_one.position.y)
 		new_vect = new_vect/sqrt(new_vect.x**2 + new_vect.y**2)
 		ball.velocity = new_vect * (ball_speed + ball_speed_delta)
-		ball_speed_delta += 10
-		ball.move_and_slide()
+		ball_speed_delta += 50
