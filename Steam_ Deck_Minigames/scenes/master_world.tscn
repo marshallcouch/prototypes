@@ -18,64 +18,116 @@ size = Vector2(20, 800)
 [node name="MasterWorld" type="Node2D"]
 script = ExtResource("1_i5r4v")
 
-[node name="Pong" type="Node2D" parent="."]
+[node name="StartPanel" type="Panel" parent="."]
+z_index = 100
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1280.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.5
+offset_top = -20.0
+offset_right = 25.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameSelect" type="OptionButton" parent="StartPanel/VBoxContainer"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Pong"
+popup/item_0/id = 0
+popup/item_1/text = "Light Cycles"
+popup/item_1/id = 1
+
+[node name="Start" type="Button" parent="StartPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Start
+"
+
+[node name="Reset" type="Button" parent="StartPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Reset"
+
+[node name="Quit" type="Button" parent="StartPanel/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Minigames" type="Node" parent="."]
+
+[node name="Pong" type="Node2D" parent="Minigames"]
 script = ExtResource("2_bwbun")
 
-[node name="Players" type="Node" parent="Pong"]
+[node name="Players" type="Node" parent="Minigames/Pong"]
 
-[node name="PlayerOne" type="CharacterBody2D" parent="Pong/Players"]
+[node name="PlayerOne" type="CharacterBody2D" parent="Minigames/Pong/Players"]
 position = Vector2(20, 400)
 
-[node name="PlayerShape" type="Polygon2D" parent="Pong/Players/PlayerOne"]
+[node name="PlayerShape" type="Polygon2D" parent="Minigames/Pong/Players/PlayerOne"]
 polygon = PackedVector2Array(-5, -80, 5, -80, 5, 80, -5, 80)
 
-[node name="PlayerArea" type="Area2D" parent="Pong/Players/PlayerOne"]
+[node name="PlayerArea" type="Area2D" parent="Minigames/Pong/Players/PlayerOne"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pong/Players/PlayerOne/PlayerArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/Pong/Players/PlayerOne/PlayerArea"]
 shape = SubResource("RectangleShape2D_h1hl1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pong/Players/PlayerOne"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/Pong/Players/PlayerOne"]
 shape = SubResource("RectangleShape2D_xcri3")
 
-[node name="PlayerTwo" type="CharacterBody2D" parent="Pong/Players"]
+[node name="PlayerTwo" type="CharacterBody2D" parent="Minigames/Pong/Players"]
 position = Vector2(1260, 400)
 
-[node name="PlayerShape" type="Polygon2D" parent="Pong/Players/PlayerTwo"]
+[node name="PlayerShape" type="Polygon2D" parent="Minigames/Pong/Players/PlayerTwo"]
 polygon = PackedVector2Array(-5, -80, 5, -80, 5, 80, -5, 80)
 
-[node name="PlayerArea" type="Area2D" parent="Pong/Players/PlayerTwo"]
+[node name="PlayerArea" type="Area2D" parent="Minigames/Pong/Players/PlayerTwo"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pong/Players/PlayerTwo/PlayerArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/Pong/Players/PlayerTwo/PlayerArea"]
 shape = SubResource("RectangleShape2D_h1hl1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pong/Players/PlayerTwo"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/Pong/Players/PlayerTwo"]
 shape = SubResource("RectangleShape2D_xcri3")
 
-[node name="Ball" type="CharacterBody2D" parent="Pong" groups=["ball"]]
+[node name="Ball" type="CharacterBody2D" parent="Minigames/Pong" groups=["ball"]]
 position = Vector2(640, 400)
 
-[node name="Polygon2D" type="Polygon2D" parent="Pong/Ball"]
+[node name="Polygon2D" type="Polygon2D" parent="Minigames/Pong/Ball"]
 polygon = PackedVector2Array(15, 0, 14, -6, 11, -11, 6, -14, 0, -15, -6, -14, -11, -11, -14, -6, -15, 0, -14, 6, -11, 11, -6, 14, 0, 15, 6, 14, 11, 11, 14, 6)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pong/Ball"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/Pong/Ball"]
 shape = SubResource("CircleShape2D_lgcbm")
 
-[node name="Goals" type="Node" parent="Pong"]
+[node name="Goals" type="Node" parent="Minigames/Pong"]
 
-[node name="PlayerOneGoal" type="Area2D" parent="Pong/Goals"]
+[node name="PlayerOneGoal" type="Area2D" parent="Minigames/Pong/Goals"]
 position = Vector2(-10, 0)
 
-[node name="GoalOne" type="CollisionShape2D" parent="Pong/Goals/PlayerOneGoal"]
+[node name="GoalOne" type="CollisionShape2D" parent="Minigames/Pong/Goals/PlayerOneGoal"]
 position = Vector2(0, 400)
 shape = SubResource("RectangleShape2D_26n7s")
 
-[node name="PlayerTwoGoal" type="Area2D" parent="Pong/Goals"]
+[node name="PlayerTwoGoal" type="Area2D" parent="Minigames/Pong/Goals"]
 position = Vector2(1290, 400)
 
-[node name="GoalTwo" type="CollisionShape2D" parent="Pong/Goals/PlayerTwoGoal"]
+[node name="GoalTwo" type="CollisionShape2D" parent="Minigames/Pong/Goals/PlayerTwoGoal"]
 shape = SubResource("RectangleShape2D_26n7s")
 
-[node name="PlayerOneScore" type="Label" parent="Pong"]
+[node name="PlayerOneScore" type="Label" parent="Minigames/Pong"]
 offset_left = 320.0
 offset_right = 341.0
 offset_bottom = 53.0
@@ -84,7 +136,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerTwoScore" type="Label" parent="Pong"]
+[node name="PlayerTwoScore" type="Label" parent="Minigames/Pong"]
 offset_left = 960.0
 offset_right = 981.0
 offset_bottom = 53.0
@@ -93,7 +145,10 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="body_entered" from="Pong/Players/PlayerOne/PlayerArea" to="Pong" method="_on_player_one_area_body_entered"]
-[connection signal="body_entered" from="Pong/Players/PlayerTwo/PlayerArea" to="Pong" method="_on_player_two_area_body_entered"]
-[connection signal="body_entered" from="Pong/Goals/PlayerOneGoal" to="Pong" method="_on_player_one_goal_body_entered"]
-[connection signal="body_entered" from="Pong/Goals/PlayerTwoGoal" to="Pong" method="_on_player_two_goal_body_entered"]
+[connection signal="button_up" from="StartPanel/VBoxContainer/Start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="StartPanel/VBoxContainer/Reset" to="." method="_on_reset_button_up"]
+[connection signal="button_up" from="StartPanel/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
+[connection signal="body_entered" from="Minigames/Pong/Players/PlayerOne/PlayerArea" to="Minigames/Pong" method="_on_player_one_area_body_entered"]
+[connection signal="body_entered" from="Minigames/Pong/Players/PlayerTwo/PlayerArea" to="Minigames/Pong" method="_on_player_two_area_body_entered"]
+[connection signal="body_entered" from="Minigames/Pong/Goals/PlayerOneGoal" to="Minigames/Pong" method="_on_player_one_goal_body_entered"]
+[connection signal="body_entered" from="Minigames/Pong/Goals/PlayerTwoGoal" to="Minigames/Pong" method="_on_player_two_goal_body_entered"]

@@ -15,7 +15,15 @@ const MAX_ANALOG:float = .85
 func _ready():
 	pass # Replace with function body.
 
-
+func reset():
+	ball.position = Vector2(640,400)
+	ball.velocity = Vector2(0,0)
+	ball_speed_delta = 0
+	player_one.position = Vector2(20,400)
+	player_two.position = Vector2(1260,400)
+	player_one_score_label.text = "0"
+	player_two_score_label.text = "0"
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	var i = 0
