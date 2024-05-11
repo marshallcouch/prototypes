@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1s6sl414nt5u"]
+
+[ext_resource type="Script" path="res://src/master_world.gd" id="1_i5r4v"]
+[ext_resource type="Script" path="res://src/pong.gd" id="2_bwbun"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1hl1"]
+size = Vector2(10, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vgb7"]
+size = Vector2(6, 80)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lgcbm"]
+radius = 15.0333
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26n7s"]
+size = Vector2(20, 800)
+
+[node name="MasterWorld" type="Node2D"]
+script = ExtResource("1_i5r4v")
+
+[node name="Pong" type="Node2D" parent="."]
+script = ExtResource("2_bwbun")
+
+[node name="Players" type="Node" parent="Pong"]
+
+[node name="PlayerOne" type="CharacterBody2D" parent="Pong/Players"]
+position = Vector2(20, 400)
+
+[node name="PlayerShape" type="Polygon2D" parent="Pong/Players/PlayerOne"]
+polygon = PackedVector2Array(-5, -80, 5, -80, 5, 80, -5, 80)
+
+[node name="PlayerArea" type="Area2D" parent="Pong/Players/PlayerOne"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pong/Players/PlayerOne/PlayerArea"]
+shape = SubResource("RectangleShape2D_h1hl1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pong/Players/PlayerOne"]
+shape = SubResource("RectangleShape2D_1vgb7")
+
+[node name="PlayerTwo" type="CharacterBody2D" parent="Pong/Players"]
+position = Vector2(1260, 400)
+
+[node name="PlayerShape" type="Polygon2D" parent="Pong/Players/PlayerTwo"]
+polygon = PackedVector2Array(-5, -80, 5, -80, 5, 80, -5, 80)
+
+[node name="PlayerArea" type="Area2D" parent="Pong/Players/PlayerTwo"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pong/Players/PlayerTwo/PlayerArea"]
+shape = SubResource("RectangleShape2D_h1hl1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pong/Players/PlayerTwo"]
+shape = SubResource("RectangleShape2D_1vgb7")
+
+[node name="Ball" type="CharacterBody2D" parent="Pong"]
+position = Vector2(640, 400)
+
+[node name="Polygon2D" type="Polygon2D" parent="Pong/Ball"]
+polygon = PackedVector2Array(15, 0, 14, -6, 11, -11, 6, -14, 0, -15, -6, -14, -11, -11, -14, -6, -15, 0, -14, 6, -11, 11, -6, 14, 0, 15, 6, 14, 11, 11, 14, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pong/Ball"]
+shape = SubResource("CircleShape2D_lgcbm")
+
+[node name="Goals" type="Node" parent="Pong"]
+
+[node name="PlayerOneGoal" type="Area2D" parent="Pong/Goals"]
+position = Vector2(-10, 0)
+
+[node name="GoalOne" type="CollisionShape2D" parent="Pong/Goals/PlayerOneGoal"]
+position = Vector2(0, 400)
+shape = SubResource("RectangleShape2D_26n7s")
+
+[node name="PlayerTwoGoal" type="Area2D" parent="Pong/Goals"]
+position = Vector2(1290, 400)
+
+[node name="GoalTwo" type="CollisionShape2D" parent="Pong/Goals/PlayerTwoGoal"]
+shape = SubResource("RectangleShape2D_26n7s")
+
+[node name="PlayerOneScore" type="Label" parent="Pong"]
+offset_left = 320.0
+offset_right = 341.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerTwoScore" type="Label" parent="Pong"]
+offset_left = 960.0
+offset_right = 981.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
