@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://c7gtpuee8ojpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cqh7"]
-size = Vector2(10, 10)
+size = Vector2(6, 6)
 
 [node name="TailNode" type="Area2D"]
 
@@ -9,4 +9,4 @@ size = Vector2(10, 10)
 shape = SubResource("RectangleShape2D_4cqh7")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-5, -5, -5, 5, 5, 5, 5, -5)
+polygon = PackedVector2Array(-3, -3, -3, 3, 3, 3, 3, -3)
