@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var minigames = $Minigames
-@onready var pong = $Minigames/Pong
+#@onready var pong = $Minigames/Pong
 @onready var game_select = $StartPanel/VBoxContainer/GameSelect
 @onready var start_panel = $StartPanel
 # Called when the node enters the scene tree for the first time.
@@ -27,13 +27,12 @@ func _on_start_button_up():
 		start_panel.show()
 		return
 	for child in minigames.get_children():
-		if child.name == game_select.get_item_text(game_select.selected):
+		
+		if child.name == game_select.get_item_text(game_select.selected).replace(" ",""):
 			start_panel.hide()
 			#child.reset()
 			child.process_mode = PROCESS_MODE_INHERIT
-
 			
-
 
 func _on_reset_button_up():
 	for child in minigames.get_children():

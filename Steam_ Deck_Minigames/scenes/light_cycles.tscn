@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmstxcnq8gjfg"]
+
+[ext_resource type="Script" path="res://src/light_cycles.gd" id="1_vteka"]
+[ext_resource type="PackedScene" uid="uid://c7gtpuee8ojpo" path="res://scenes/light_cycles/tail_node.tscn" id="2_q63ct"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17mkm"]
+size = Vector2(10, 10)
+
+[node name="LightCycles" type="Node"]
+script = ExtResource("1_vteka")
+
+[node name="Tails" type="Node" parent="."]
+
+[node name="TailNode" parent="Tails" instance=ExtResource("2_q63ct")]
+
+[node name="Players" type="Node" parent="."]
+
+[node name="PlayerOne" type="CharacterBody2D" parent="Players"]
+position = Vector2(20, 400)
+
+[node name="PlayerShape" type="Polygon2D" parent="Players/PlayerOne"]
+polygon = PackedVector2Array(-10, -5, 10, -5, 10, 5, -10, 5)
+
+[node name="PlayerArea" type="Area2D" parent="Players/PlayerOne"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/PlayerOne/PlayerArea"]
+shape = SubResource("RectangleShape2D_17mkm")
+
+[node name="PlayerTwo" type="CharacterBody2D" parent="Players"]
+position = Vector2(1260, 400)
+
+[node name="PlayerShape" type="Polygon2D" parent="Players/PlayerTwo"]
+polygon = PackedVector2Array(-10, -5, 10, -5, 10, 5, -10, 5)
+
+[node name="PlayerArea" type="Area2D" parent="Players/PlayerTwo"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Players/PlayerTwo/PlayerArea"]
+shape = SubResource("RectangleShape2D_17mkm")

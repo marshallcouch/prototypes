@@ -1,19 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1s6sl414nt5u"]
+[gd_scene load_steps=3 format=3 uid="uid://b1s6sl414nt5u"]
 
 [ext_resource type="Script" path="res://src/master_world.gd" id="1_i5r4v"]
-[ext_resource type="Script" path="res://src/pong.gd" id="2_bwbun"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1hl1"]
-size = Vector2(10, 160)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcri3"]
-size = Vector2(5, 160)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lgcbm"]
-radius = 15.0333
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_26n7s"]
-size = Vector2(20, 800)
+[ext_resource type="PackedScene" uid="uid://cmstxcnq8gjfg" path="res://scenes/light_cycles.tscn" id="2_gcq0x"]
 
 [node name="MasterWorld" type="Node2D"]
 script = ExtResource("1_i5r4v")
@@ -48,9 +36,9 @@ grow_vertical = 2
 layout_mode = 2
 item_count = 2
 selected = 0
-popup/item_0/text = "Pong"
+popup/item_0/text = "Light Cycles"
 popup/item_0/id = 0
-popup/item_1/text = "Light Cycles"
+popup/item_1/text = "Pong"
 popup/item_1/id = 1
 
 [node name="Start" type="Button" parent="StartPanel/VBoxContainer"]
@@ -70,85 +58,8 @@ text = "Quit"
 
 [node name="Minigames" type="Node" parent="."]
 
-[node name="Pong" type="Node2D" parent="Minigames"]
-script = ExtResource("2_bwbun")
-
-[node name="Players" type="Node" parent="Minigames/Pong"]
-
-[node name="PlayerOne" type="CharacterBody2D" parent="Minigames/Pong/Players"]
-position = Vector2(20, 400)
-
-[node name="PlayerShape" type="Polygon2D" parent="Minigames/Pong/Players/PlayerOne"]
-polygon = PackedVector2Array(-5, -80, 5, -80, 5, 80, -5, 80)
-
-[node name="PlayerArea" type="Area2D" parent="Minigames/Pong/Players/PlayerOne"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/Pong/Players/PlayerOne/PlayerArea"]
-shape = SubResource("RectangleShape2D_h1hl1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/Pong/Players/PlayerOne"]
-shape = SubResource("RectangleShape2D_xcri3")
-
-[node name="PlayerTwo" type="CharacterBody2D" parent="Minigames/Pong/Players"]
-position = Vector2(1260, 400)
-
-[node name="PlayerShape" type="Polygon2D" parent="Minigames/Pong/Players/PlayerTwo"]
-polygon = PackedVector2Array(-5, -80, 5, -80, 5, 80, -5, 80)
-
-[node name="PlayerArea" type="Area2D" parent="Minigames/Pong/Players/PlayerTwo"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/Pong/Players/PlayerTwo/PlayerArea"]
-shape = SubResource("RectangleShape2D_h1hl1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/Pong/Players/PlayerTwo"]
-shape = SubResource("RectangleShape2D_xcri3")
-
-[node name="Ball" type="CharacterBody2D" parent="Minigames/Pong" groups=["ball"]]
-position = Vector2(640, 400)
-
-[node name="Polygon2D" type="Polygon2D" parent="Minigames/Pong/Ball"]
-polygon = PackedVector2Array(15, 0, 14, -6, 11, -11, 6, -14, 0, -15, -6, -14, -11, -11, -14, -6, -15, 0, -14, 6, -11, 11, -6, 14, 0, 15, 6, 14, 11, 11, 14, 6)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/Pong/Ball"]
-shape = SubResource("CircleShape2D_lgcbm")
-
-[node name="Goals" type="Node" parent="Minigames/Pong"]
-
-[node name="PlayerOneGoal" type="Area2D" parent="Minigames/Pong/Goals"]
-position = Vector2(-10, 0)
-
-[node name="GoalOne" type="CollisionShape2D" parent="Minigames/Pong/Goals/PlayerOneGoal"]
-position = Vector2(0, 400)
-shape = SubResource("RectangleShape2D_26n7s")
-
-[node name="PlayerTwoGoal" type="Area2D" parent="Minigames/Pong/Goals"]
-position = Vector2(1290, 400)
-
-[node name="GoalTwo" type="CollisionShape2D" parent="Minigames/Pong/Goals/PlayerTwoGoal"]
-shape = SubResource("RectangleShape2D_26n7s")
-
-[node name="PlayerOneScore" type="Label" parent="Minigames/Pong"]
-offset_left = 320.0
-offset_right = 341.0
-offset_bottom = 53.0
-theme_override_font_sizes/font_size = 72
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PlayerTwoScore" type="Label" parent="Minigames/Pong"]
-offset_left = 960.0
-offset_right = 981.0
-offset_bottom = 53.0
-theme_override_font_sizes/font_size = 72
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="LightCycles" parent="Minigames" instance=ExtResource("2_gcq0x")]
 
 [connection signal="button_up" from="StartPanel/VBoxContainer/Start" to="." method="_on_start_button_up"]
 [connection signal="button_up" from="StartPanel/VBoxContainer/Reset" to="." method="_on_reset_button_up"]
 [connection signal="button_up" from="StartPanel/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
-[connection signal="body_entered" from="Minigames/Pong/Players/PlayerOne/PlayerArea" to="Minigames/Pong" method="_on_player_one_area_body_entered"]
-[connection signal="body_entered" from="Minigames/Pong/Players/PlayerTwo/PlayerArea" to="Minigames/Pong" method="_on_player_two_area_body_entered"]
-[connection signal="body_entered" from="Minigames/Pong/Goals/PlayerOneGoal" to="Minigames/Pong" method="_on_player_one_goal_body_entered"]
-[connection signal="body_entered" from="Minigames/Pong/Goals/PlayerTwoGoal" to="Minigames/Pong" method="_on_player_two_goal_body_entered"]
