@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmstxcnq8gjfg"]
+[gd_scene load_steps=6 format=3 uid="uid://cmstxcnq8gjfg"]
 
 [ext_resource type="Script" path="res://src/light_cycles.gd" id="1_vteka"]
 [ext_resource type="PackedScene" uid="uid://c7gtpuee8ojpo" path="res://scenes/light_cycles/tail_node.tscn" id="2_q63ct"]
@@ -9,23 +9,10 @@ size = Vector2(1280, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qr62e"]
 size = Vector2(20, 800)
 
-[sub_resource type="Gradient" id="Gradient_6qrbt"]
-offsets = PackedFloat32Array(0, 0.0322581, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.922581, 0.922581, 0.922581, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_s3ku3"]
-gradient = SubResource("Gradient_6qrbt")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_17mkm"]
-size = Vector2(8, 8)
+size = Vector2(1, 3)
 
-[sub_resource type="Gradient" id="Gradient_hmjxn"]
-offsets = PackedFloat32Array(0, 0.00645161)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_x7x4y"]
-gradient = SubResource("Gradient_hmjxn")
-
-[node name="LightCycles" type="Node"]
+[node name="LightCycles" type="Node2D"]
 script = ExtResource("1_vteka")
 
 [node name="Walls" type="Node" parent="."]
@@ -61,44 +48,61 @@ shape = SubResource("RectangleShape2D_qr62e")
 [node name="Players" type="Node" parent="."]
 
 [node name="PlayerOne" type="CharacterBody2D" parent="Players"]
-position = Vector2(20, 400)
+position = Vector2(80, 400)
 
 [node name="PlayerShape" type="Polygon2D" parent="Players/PlayerOne"]
-texture = SubResource("GradientTexture1D_s3ku3")
+color = Color(0.666667, 0.666667, 0.666667, 1)
 polygon = PackedVector2Array(-10, -5, 10, -5, 10, 5, -10, 5)
 
 [node name="PlayerOneArea" type="Area2D" parent="Players/PlayerOne/PlayerShape"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Players/PlayerOne/PlayerShape/PlayerOneArea"]
-position = Vector2(6, 0)
+position = Vector2(9, 0)
 shape = SubResource("RectangleShape2D_17mkm")
 
 [node name="PlayerTwo" type="CharacterBody2D" parent="Players"]
-position = Vector2(1260, 400)
+position = Vector2(1200, 400)
 
 [node name="PlayerShape" type="Polygon2D" parent="Players/PlayerTwo"]
-texture = SubResource("GradientTexture1D_x7x4y")
+color = Color(0.666667, 0.666667, 0.666667, 1)
 polygon = PackedVector2Array(-10, -5, 10, -5, 10, 5, -10, 5)
 
 [node name="PlayerTwoArea" type="Area2D" parent="Players/PlayerTwo/PlayerShape"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Players/PlayerTwo/PlayerShape/PlayerTwoArea"]
-position = Vector2(6, 0)
+position = Vector2(9, 0)
 shape = SubResource("RectangleShape2D_17mkm")
 
 [node name="PlayerOneScore" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = 320.0
-offset_right = 341.0
-offset_bottom = 53.0
+offset_top = 20.0
+offset_right = 361.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 72
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlayerTwoScore" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = 960.0
-offset_right = 981.0
-offset_bottom = 53.0
+offset_top = 20.0
+offset_right = 1001.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 72
 text = "0"
 horizontal_alignment = 1

@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://c7gtpuee8ojpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cqh7"]
-size = Vector2(6, 6)
+size = Vector2(2, 2)
 
 [node name="TailNode" type="Area2D"]
 

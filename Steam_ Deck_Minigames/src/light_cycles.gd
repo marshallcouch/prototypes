@@ -20,6 +20,12 @@ func _ready():
 func _physics_process(delta):
 	player_movement(player_one, player_one_shape, 0)
 	player_movement(player_two, player_two_shape, 1)
+	if player_one_scored:
+		player_one_score_label.text = str(int(player_one_score_label.text)+1)
+		player_one_scored = false
+	if player_two_scored:
+		player_two_score_label.text = str(int(player_two_score_label.text)+1)
+		player_two_scored = false
 
 func reset():
 	new_round()
@@ -28,8 +34,8 @@ func reset():
 	
 
 func new_round():
-	player_one.position = Vector2(20,400)
-	player_two.position = Vector2(1260,400)
+	player_one.position = Vector2(80,400)
+	player_two.position = Vector2(1200,400)
 	player_one.velocity = Vector2(0,0)
 	player_two.velocity = Vector2(0,0)
 	for tail in tails.get_children():
@@ -95,18 +101,21 @@ func _x_y_movement(x:float, y:float) -> Vector2:
 	return v 
 
 var resetting: bool = false
+var player_one_scored = false
+var player_two_scored = false
 func _on_player_one_area_area_entered(area):
 	if resetting: 
 		return
 	resetting = true
 	new_round()
-	player_two_score_label.text = str(int(player_two_score_label.text)+1)
+	player_two_scored = true
+
 
 func _on_player_two_area_area_entered(area):
 	if resetting: 
 		return
 	resetting = true
 	new_round()
-	player_one_score_label.text = str(int(player_one_score_label.text)+1)
+	player_one_scored = true
 	
 	
