@@ -4,17 +4,11 @@ extends Node2D
 @onready var game_select = $StartPanel/VBoxContainer/GameSelect
 @onready var start_panel = $StartPanel
 
-var pong = preload("res://scenes/pong.tscn")
+var tennis = preload("res://scenes/tennis.tscn")
 var light_cycles = preload("res://scenes/light_cycles.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for child in minigames.get_children():
-		child.process_mode = Node.PROCESS_MODE_DISABLED
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
 	pass
-
 
 func _input(event):
 	if event.is_action_released("start"):
@@ -39,9 +33,9 @@ func _on_start_button_up():
 		
 		for minigame in minigames.get_children():
 			minigame.queue_free()
-		if "Pong" == game:
-			minigames.add_child(pong.instantiate())
-			currently_playing = "Pong"
+		if "Tennis" == game:
+			minigames.add_child(tennis.instantiate())
+			currently_playing = "Tennis"
 		if "Light Cycles" == game:
 			minigames.add_child(light_cycles.instantiate())
 			currently_playing = "Light Cycles"
@@ -57,3 +51,4 @@ func _on_reset_button_up():
 
 func _on_quit_button_up():
 	get_tree().quit()
+

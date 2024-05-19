@@ -17,7 +17,7 @@ func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	player_movement(player_one, player_one_shape, 0)
 	player_movement(player_two, player_two_shape, 1)
 	if player_one_scored:
@@ -38,8 +38,8 @@ func new_round():
 	player_two.position = Vector2(1200,400)
 	player_one.velocity = Vector2(0,0)
 	player_two.velocity = Vector2(0,0)
-	for tail in tails.get_children():
-		tail.queue_free()
+	for t in tails.get_children():
+		t.queue_free()
 	resetting = false
 
 func player_movement(player: Node,shape:Node,player_number:int):
@@ -103,7 +103,7 @@ func _x_y_movement(x:float, y:float) -> Vector2:
 var resetting: bool = false
 var player_one_scored = false
 var player_two_scored = false
-func _on_player_one_area_area_entered(area):
+func _on_player_one_area_area_entered(_area):
 	if resetting: 
 		return
 	resetting = true
@@ -111,7 +111,7 @@ func _on_player_one_area_area_entered(area):
 	player_two_scored = true
 
 
-func _on_player_two_area_area_entered(area):
+func _on_player_two_area_area_entered(_area):
 	if resetting: 
 		return
 	resetting = true
