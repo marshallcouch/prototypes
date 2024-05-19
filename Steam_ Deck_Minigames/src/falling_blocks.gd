@@ -25,8 +25,6 @@ var block = preload("res://scenes/falling_blocks/block.tscn")
 func _ready():
 	draw_grid()
 
-
-
 func draw_grid():
 	for i in range(grid_start_y,grid_end_y+1,grid_size):
 		var line = Line2D.new()
@@ -54,6 +52,7 @@ func _process(delta):
 	for i in range(0,2):
 		player_movement_delay[i] -= delta
 		_coffee_table_controls(i)
+	
 		
 var wait_time_for_movement = .2
 func _coffee_table_controls(player):
@@ -91,17 +90,17 @@ func _coffee_table_controls(player):
 	if delay:
 		player_movement_delay[player] =  wait_time_for_movement
 			
-func drop_blocks():
-	for i in 2:
-		if player_active_blocks[i] == []:
-			get_block(i)
-		else:
-			if !update_positions(player_active_blocks[i],drop_vector[i],player_blocks[i]):
-				for block in player_active_blocks[i]:
-					block.is_locked = true
-				check_for_line_clear(i)
-				check_for_loss(i)
-				player_active_blocks[i] = []
+func drop_blocks(player:int):
+	var i = player
+	if player_active_blocks[i] == []:
+		get_block(i)
+	else:
+		if !update_positions(player_active_blocks[i],drop_vector[i],player_blocks[i]):
+			for block in player_active_blocks[i]:
+				block.is_locked = true
+			check_for_line_clear(i)
+			check_for_loss(i)
+			player_active_blocks[i] = []
 
 func check_for_line_clear(player:int):
 	var lines = {}
@@ -120,6 +119,8 @@ func check_for_line_clear(player:int):
 	var offset = Vector2(0,0)
 	for line in lines_to_clear:
 		player_scores[player].text = str(int(player_scores[player].text)+1)
+		#slowly speed up
+		drop_speed = drop_speed*.98
 		for bl in player_blocks[player].get_children():
 			if bl.position.x == line+offset.x:
 				bl.queue_free()
@@ -201,7 +202,8 @@ func get_block(player:int):
 		player_blocks[player].add_child(new_block)
 
 func _on_player_one_drop_timer_timeout():
-	drop_blocks()
+	drop_blocks(0)
+	player_drop_timer[0].start(drop_speed)
 	
 func reset():
 	for i in range(0,2):
@@ -210,5 +212,6 @@ func reset():
 	player_active_blocks= [[],[]]
 
 
-func _on_player_one_movement_timer_timeout():
-	pass # Replace with function body.
+func _on_player_two_drop_timer_timeout():
+	drop_blocks(1)
+	player_drop_timer[1].start(drop_speed)
