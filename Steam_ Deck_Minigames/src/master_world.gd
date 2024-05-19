@@ -6,6 +6,7 @@ extends Node2D
 
 var tennis = preload("res://scenes/tennis.tscn")
 var light_cycles = preload("res://scenes/light_cycles.tscn")
+var falling_blocks = preload("res://scenes/falling_blocks.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -39,10 +40,11 @@ func _on_start_button_up():
 		if "Light Cycles" == game:
 			minigames.add_child(light_cycles.instantiate())
 			currently_playing = "Light Cycles"
+		if "Falling Blocks" == game:
+			minigames.add_child(falling_blocks.instantiate())
+			currently_playing = "Falling Blocks"
 
 
-			
-			
 
 func _on_reset_button_up():
 	for child in minigames.get_children():

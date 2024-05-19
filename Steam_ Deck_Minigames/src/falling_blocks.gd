@@ -10,7 +10,7 @@ var grid_start_y = 250
 var grid_end_y = 550
 var grid_size = 30
 
-var player_start_block = [Vector2(625,385),Vector2(655,415)]
+var player_start_block = [Vector2(595,385),Vector2(685,415)]
 var player_active_blocks = [[],[]]
 var drop_vector = [Vector2(-30,0),Vector2(30,0)]
 
@@ -24,6 +24,7 @@ var block = preload("res://scenes/falling_blocks/block.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	draw_grid()
+
 
 
 func draw_grid():
@@ -53,7 +54,7 @@ func _process(delta):
 	for i in range(0,2):
 		player_movement_delay[i] -= delta
 		_coffee_table_controls(i)
-	
+		
 var wait_time_for_movement = .2
 func _coffee_table_controls(player):
 	if player_movement_delay[player] > 0.001:
@@ -112,13 +113,23 @@ func check_for_line_clear(player:int):
 				lines_to_clear.append(bl.position.x)
 		else:
 			lines[bl.position.x] = 1
+			
+	lines_to_clear.sort()
+	if player ==1:
+		lines_to_clear.reverse()
+	var offset = Vector2(0,0)
 	for line in lines_to_clear:
 		player_scores[player].text = str(int(player_scores[player].text)+1)
 		for bl in player_blocks[player].get_children():
-			if bl.position.x == line:
+			if bl.position.x == line+offset.x:
 				bl.queue_free()
-			if bl.position.x > line:
-				bl.position += drop_vector[player]
+			if player ==0:
+				if bl.position.x > line+offset.x:
+					bl.position += drop_vector[player]
+			elif player==1:
+				if bl.position.x < line+offset.x:
+					bl.position +=  drop_vector[player]
+		offset+=drop_vector[player]
 	
 	
 func check_for_loss(player: int):
@@ -132,7 +143,7 @@ func check_for_loss(player: int):
 			return
 	
 
-func rotate(blocks,player_blocks ):
+func rotate(blocks,player_blocks):
 	if blocks == []:
 		return
 	var rotate_point:Vector2 = blocks[0].position
@@ -170,10 +181,10 @@ func update_positions(blocks,movement,player_blocks) -> bool:
 		bl.position += movement
 	return true
 	
-const BLOCK_GROUPS = [[Vector2(0,0), Vector2(0,30),Vector2(-30,0),Vector2(-30,30)],#square
+const BLOCK_GROUPS = [[Vector2(0,0), Vector2(0,30),Vector2(30,0),Vector2(30,30)],#square
 	[Vector2(0,0), Vector2(0,-30),Vector2(0,30),Vector2(0,60)], #line
 	[Vector2(0,0), Vector2(0,-30),Vector2(0,30),Vector2(30,30)], #L
-	[Vector2(0,0), Vector2(0,-30),Vector2(0,30),Vector2(-30,30)], #ReverseL
+	[Vector2(0,0), Vector2(0,-30),Vector2(0,30),Vector2(30,-30)], #ReverseL
 	[Vector2(0,0), Vector2(0,30),Vector2(30,0),Vector2(30,-30)], #Z
 	[Vector2(0,0), Vector2(0,-30),Vector2(30,0),Vector2(30,30)], #ReverseZ
 	[Vector2(0,0), Vector2(0,-30),Vector2(0,30),Vector2(30,0)]#PartialE
@@ -185,7 +196,7 @@ func get_block(player:int):
 		if player ==0:
 			new_block.position = player_start_block[player] + BLOCK_GROUPS[block_shape][i]
 		elif player ==1:
-				new_block.position = player_start_block[player] - BLOCK_GROUPS[block_shape][i]
+			new_block.position = player_start_block[player] - BLOCK_GROUPS[block_shape][i]
 		player_active_blocks[player].append(new_block)
 		player_blocks[player].add_child(new_block)
 
