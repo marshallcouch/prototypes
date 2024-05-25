@@ -14,8 +14,6 @@ func _ready():
 func _input(event):
 	if event.is_action_released("start"):
 		_on_start_button_up()
-	
-
 var currently_playing = ""
 
 func _on_start_button_up():
