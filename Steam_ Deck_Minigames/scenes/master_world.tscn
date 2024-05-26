@@ -1,26 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1s6sl414nt5u"]
+[gd_scene load_steps=3 format=3 uid="uid://b1s6sl414nt5u"]
 
 [ext_resource type="Script" path="res://src/master_world.gd" id="1_i5r4v"]
-[ext_resource type="Texture2D" uid="uid://bfma3wjogeq13" path="res://assets/icon.svg" id="2_ngoul"]
-[ext_resource type="Script" path="res://src/MiddleDefense.gd" id="2_rmmb4"]
-
-[sub_resource type="Curve2D" id="Curve2D_h52k4"]
-_data = {
-"points": PackedVector2Array(-2.84006, -400, 0, 400, 0, 0, 0, 0, 0, 0, 0, 800)
-}
-point_count = 2
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_70c8h"]
-radius = 59.2115
-
-[sub_resource type="Curve2D" id="Curve2D_8raxa"]
-_data = {
-"points": PackedVector2Array(-2.84006, -400, 0, 400, 0, 0, 0, 0, 0, 0, 0, 800)
-}
-point_count = 2
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_r7y22"]
-radius = 17.0294
+[ext_resource type="PackedScene" uid="uid://d35f0s8ut7djb" path="res://scenes/middle_defense.tscn" id="2_8q6pt"]
 
 [node name="MasterWorld" type="Node2D"]
 script = ExtResource("1_i5r4v")
@@ -55,7 +36,7 @@ grow_vertical = 2
 [node name="GameSelect" type="OptionButton" parent="StartPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
-item_count = 3
+item_count = 4
 selected = 0
 popup/item_0/text = "Tennis"
 popup/item_0/id = 0
@@ -63,6 +44,8 @@ popup/item_1/text = "Light Cycles"
 popup/item_1/id = 1
 popup/item_2/text = "Falling Blocks"
 popup/item_2/id = 2
+popup/item_3/text = "Middle Defense"
+popup/item_3/id = 3
 
 [node name="Start" type="Button" parent="StartPanel/VBoxContainer"]
 layout_mode = 2
@@ -84,60 +67,7 @@ text = "Quit"
 
 [node name="Minigames" type="Node" parent="."]
 
-[node name="MiddleDefense" type="Node2D" parent="Minigames"]
-script = ExtResource("2_rmmb4")
-
-[node name="PlayerOneLine" type="Line2D" parent="Minigames/MiddleDefense"]
-position = Vector2(320, 0)
-points = PackedVector2Array(0, 0, 0, 400)
-width = 2.0
-
-[node name="PlayerTwoLine" type="Line2D" parent="Minigames/MiddleDefense"]
-position = Vector2(960, 0)
-points = PackedVector2Array(0, 0, 0, 400)
-width = 2.0
-
-[node name="PlayerOnePath" type="Path2D" parent="Minigames/MiddleDefense"]
-position = Vector2(320, 0)
-curve = SubResource("Curve2D_h52k4")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Minigames/MiddleDefense/PlayerOnePath"]
-rotation = 1.5708
-
-[node name="Sprite2D" type="Sprite2D" parent="Minigames/MiddleDefense/PlayerOnePath/PathFollow2D"]
-texture = ExtResource("2_ngoul")
-
-[node name="Area2D" type="Area2D" parent="Minigames/MiddleDefense/PlayerOnePath/PathFollow2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/MiddleDefense/PlayerOnePath/PathFollow2D/Area2D"]
-shape = SubResource("CircleShape2D_70c8h")
-
-[node name="PlayerTwoPath" type="Path2D" parent="Minigames/MiddleDefense"]
-position = Vector2(960, 0)
-curve = SubResource("Curve2D_8raxa")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Minigames/MiddleDefense/PlayerTwoPath"]
-rotation = 1.5708
-
-[node name="Sprite2D" type="Sprite2D" parent="Minigames/MiddleDefense/PlayerTwoPath/PathFollow2D"]
-texture = ExtResource("2_ngoul")
-
-[node name="Area2D" type="Area2D" parent="Minigames/MiddleDefense/PlayerTwoPath/PathFollow2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/MiddleDefense/PlayerTwoPath/PathFollow2D/Area2D"]
-shape = SubResource("CircleShape2D_70c8h")
-
-[node name="PlayerOneHitBox" type="Area2D" parent="Minigames/MiddleDefense"]
-position = Vector2(320, 830)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/MiddleDefense/PlayerOneHitBox"]
-shape = SubResource("CircleShape2D_r7y22")
-
-[node name="PlayerTwoHitBox" type="Area2D" parent="Minigames/MiddleDefense"]
-position = Vector2(960, 830)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigames/MiddleDefense/PlayerTwoHitBox"]
-shape = SubResource("CircleShape2D_r7y22")
+[node name="MiddleDefense" parent="Minigames" instance=ExtResource("2_8q6pt")]
 
 [connection signal="button_up" from="StartPanel/VBoxContainer/Start" to="." method="_on_start_button_up"]
 [connection signal="button_up" from="StartPanel/VBoxContainer/Reset" to="." method="_on_reset_button_up"]

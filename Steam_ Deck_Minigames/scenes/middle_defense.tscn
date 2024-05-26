@@ -1,0 +1,126 @@
+[gd_scene load_steps=6 format=3 uid="uid://d35f0s8ut7djb"]
+
+[ext_resource type="Script" path="res://src/MiddleDefense.gd" id="1_sddj5"]
+[ext_resource type="Texture2D" uid="uid://cdb4x8se4t3rw" path="res://assets/White Circle.png" id="2_ec078"]
+
+[sub_resource type="Curve2D" id="Curve2D_h52k4"]
+_data = {
+"points": PackedVector2Array(-2.84006, -400, 0, 400, 0, 0, 0, 0, 0, 0, 0, 800)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_8raxa"]
+_data = {
+"points": PackedVector2Array(-2.84006, -400, 0, 400, 0, 0, 0, 0, 0, 0, 0, 800)
+}
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7y22"]
+radius = 17.0294
+
+[node name="MiddleDefense" type="Node2D"]
+script = ExtResource("1_sddj5")
+
+[node name="PlayerOne" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerOne"]
+position = Vector2(0, 400)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ec078")
+
+[node name="Cannon" type="Line2D" parent="PlayerOne"]
+points = PackedVector2Array(0, 400, 50, 400)
+
+[node name="PlayerTwo" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerTwo"]
+position = Vector2(1280, 400)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ec078")
+
+[node name="Cannon" type="Line2D" parent="PlayerTwo"]
+points = PackedVector2Array(1280, 400, 1230, 400)
+
+[node name="PlayerOneLine" type="Line2D" parent="."]
+position = Vector2(320, 0)
+points = PackedVector2Array(0, 0, 0, 400)
+width = 2.0
+default_color = Color(0.470588, 0.470588, 0.470588, 1)
+
+[node name="PlayerTwoLine" type="Line2D" parent="."]
+position = Vector2(960, 0)
+points = PackedVector2Array(0, 0, 0, 400)
+width = 2.0
+default_color = Color(0.470588, 0.470588, 0.470588, 1)
+
+[node name="PlayerOnePath" type="Path2D" parent="."]
+position = Vector2(320, 0)
+curve = SubResource("Curve2D_h52k4")
+
+[node name="PlayerTwoPath" type="Path2D" parent="."]
+position = Vector2(960, 0)
+curve = SubResource("Curve2D_8raxa")
+
+[node name="PlayerOneHitBox" type="Area2D" parent="."]
+position = Vector2(320, 830)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOneHitBox"]
+shape = SubResource("CircleShape2D_r7y22")
+
+[node name="PlayerTwoHitBox" type="Area2D" parent="."]
+position = Vector2(960, 830)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTwoHitBox"]
+shape = SubResource("CircleShape2D_r7y22")
+
+[node name="PlayerOneScore" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 520.0
+offset_top = 20.0
+offset_right = 561.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 72
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerTwoScore" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 760.0
+offset_top = 20.0
+offset_right = 801.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 72
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="ProjectileTimer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
+[node name="projectiles" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="PlayerOneHitBox" to="." method="_on_player_one_hit_box_area_entered"]
+[connection signal="area_entered" from="PlayerTwoHitBox" to="." method="_on_player_two_hit_box_area_entered"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]

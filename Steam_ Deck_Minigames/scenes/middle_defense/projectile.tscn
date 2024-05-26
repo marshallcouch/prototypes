@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://clk5maqnm21dh"]
+
+[ext_resource type="Script" path="res://src/projectile.gd" id="1_vw3wv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vq0l"]
+radius = 7.0
+
+[node name="Projectile" type="CharacterBody2D" groups=["projectile"]]
+script = ExtResource("1_vw3wv")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4vq0l")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-5, -5, -5, 5, 5, 5, 5, -5)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
