@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://b320yi1gj3v3m"]
+
+[ext_resource type="Texture2D" uid="uid://dtcjfeq0s75xq" path="res://assets/White Circle Outline.png" id="1_2ipvg"]
+[ext_resource type="Texture2D" uid="uid://ckrd2oni8p6en" path="res://assets/White Square.png" id="2_l8uf3"]
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_86gcs"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(1, -12)
+scale = Vector2(0.0946875, 0.130469)
+texture = ExtResource("1_2ipvg")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+modification_stack = SubResource("SkeletonModificationStack2D_86gcs")
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(1, 99)
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D/Bone2D"]
+position = Vector2(0, -77)
+
+[node name="Torso" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D"]
+position = Vector2(0, 40)
+scale = Vector2(1, 19.75)
+texture = ExtResource("2_l8uf3")
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2D"]
+position = Vector2(14, 23)
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D"]
+position = Vector2(10, 36)
+
+[node name="LowerArm" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D/Bone2D"]
+position = Vector2(-5, -16)
+rotation = -0.261799
+scale = Vector2(1, 10)
+texture = ExtResource("2_l8uf3")
+
+[node name="UpperArm" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D"]
+position = Vector2(-7, -12)
+rotation = -0.523599
+scale = Vector2(1, 7)
+texture = ExtResource("2_l8uf3")
+
+[node name="Bone2D2" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2D"]
+position = Vector2(-14, 25)
+
+[node name="UpperArm2" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D2"]
+position = Vector2(28, -1)
+texture = ExtResource("2_l8uf3")
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D2"]
+position = Vector2(-10, 38)
+
+[node name="LowerArm2" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D/Bone2D2/Bone2D"]
+position = Vector2(5, -20)
+rotation = 0.261799
+scale = Vector2(1, 10)
+texture = ExtResource("2_l8uf3")
+
+[node name="Bone2D2" type="Bone2D" parent="Skeleton2D/Bone2D"]
+position = Vector2(10, 38)
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2D2"]
+position = Vector2(0, 40)
+
+[node name="LowerLeg2" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D2/Bone2D"]
+position = Vector2(0, -20)
+scale = Vector2(1, 10)
+texture = ExtResource("2_l8uf3")
+
+[node name="UpperLeg2" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D2"]
+position = Vector2(-5, -19)
+rotation = -0.261799
+scale = Vector2(1, 10)
+texture = ExtResource("2_l8uf3")
+
+[node name="Bone2D3" type="Bone2D" parent="Skeleton2D/Bone2D"]
+position = Vector2(-10, 38)
+
+[node name="UpperLeg" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D3"]
+position = Vector2(5, -19)
+rotation = 0.261799
+scale = Vector2(1, 10)
+texture = ExtResource("2_l8uf3")
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2D3"]
+position = Vector2(0, 40)
+
+[node name="LowerLeg" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2D3/Bone2D"]
+position = Vector2(0, -20)
+scale = Vector2(1, 10)
+texture = ExtResource("2_l8uf3")

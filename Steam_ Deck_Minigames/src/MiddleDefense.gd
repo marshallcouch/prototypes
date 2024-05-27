@@ -89,6 +89,7 @@ func reset():
 	for projectile_node in $projectiles.get_children():
 		projectile_node.queue_free()
 	create_paths()
+	spawn_enemies()
 
 
 const DEAD_ZONE:float = .15

@@ -6,7 +6,7 @@ extends Node
 @onready var player_one_score_label = $PlayerOneScore
 @onready var player_two_score_label = $PlayerTwoScore
 @onready var tails = $Tails
-var tail = preload("res://scenes/light_cycles/tail_node.tscn")
+var tail = preload("res://scenes/tails/tail_node.tscn")
 
 var last_tails = [Vector2(0,0),Vector2(0,0)]
 var player_speed = 300
