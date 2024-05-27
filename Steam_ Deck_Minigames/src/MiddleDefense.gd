@@ -60,9 +60,6 @@ func create_paths():
 
 
 
-	
-
-
 func _on_enemy_spawn_timer_timeout():
 	spawn_enemies()
 	enemy_spawn_timer.start(enemy_spawn_time)
