@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c65awlp6v5sm3"]
+[gd_scene load_steps=9 format=3 uid="uid://c65awlp6v5sm3"]
 
 [ext_resource type="Texture2D" uid="uid://c136y6vhpkf11" path="res://assets/Box Boy.png" id="1_m5rhb"]
 
@@ -61,10 +61,10 @@ tracks/4/path = NodePath("BoxBoy/Skeleton2D/Torso/Head:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -29)]
+"values": [Vector2(0, -29), Vector2(0, -29)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -73,10 +73,10 @@ tracks/5/path = NodePath("BoxBoy/Skeleton2D/Torso/Head:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.0334534]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -504,10 +504,10 @@ tracks/2/path = NodePath("BoxBoy/Skeleton2D/Torso/RightFoot:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 76), Vector2(17, 76)]
+"values": [Vector2(15, 75), Vector2(0, 76), Vector2(17, 76)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -516,10 +516,10 @@ tracks/3/path = NodePath("BoxBoy/Skeleton2D/Torso/RightFoot:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0]
+"values": [0.0, 0.0, 0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -719,8 +719,36 @@ tracks/9/keys = {
 "values": [0.0, 0.261799, 0.0, 0.261799]
 }
 
+[sub_resource type="Animation" id="Animation_lul8q"]
+resource_name = "block"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoxBoy/Skeleton2D/Torso/LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(60, -10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BoxBoy/Skeleton2D/Torso/LeftHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j1qcl"]
 _data = {
+"Block": SubResource("Animation_lul8q"),
 "Kick": SubResource("Animation_1pvb3"),
 "Punch": SubResource("Animation_r4cnu"),
 "RESET": SubResource("Animation_hjqk8"),
@@ -731,6 +759,7 @@ _data = {
 [node name="FightingGame" type="Node2D"]
 
 [node name="BoxBoy" type="Node2D" parent="."]
+position = Vector2(-1, -7)
 
 [node name="Textures" type="Node2D" parent="BoxBoy"]
 position = Vector2(0, -290)
