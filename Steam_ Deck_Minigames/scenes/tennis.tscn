@@ -32,6 +32,8 @@ shape = SubResource("RectangleShape2D_h1hl1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Players/PlayerOne"]
 shape = SubResource("RectangleShape2D_xcri3")
+disabled = true
+one_way_collision = true
 
 [node name="PlayerTwo" type="CharacterBody2D" parent="Players"]
 position = Vector2(1260, 400)
@@ -46,6 +48,8 @@ shape = SubResource("RectangleShape2D_h1hl1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Players/PlayerTwo"]
 shape = SubResource("RectangleShape2D_xcri3")
+disabled = true
+one_way_collision = true
 
 [node name="Ball" type="CharacterBody2D" parent="." groups=["ball"]]
 position = Vector2(640, 400)
