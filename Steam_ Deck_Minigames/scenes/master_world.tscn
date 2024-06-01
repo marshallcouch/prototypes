@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1s6sl414nt5u"]
+[gd_scene load_steps=3 format=3 uid="uid://b1s6sl414nt5u"]
 
 [ext_resource type="Script" path="res://src/master_world.gd" id="1_i5r4v"]
+[ext_resource type="PackedScene" uid="uid://c65awlp6v5sm3" path="res://scenes/fighting_game.tscn" id="2_eyhtm"]
 
 [node name="MasterWorld" type="Node2D"]
 script = ExtResource("1_i5r4v")
 
 [node name="StartPanel" type="Panel" parent="."]
+visible = false
 z_index = 100
 anchors_preset = 8
 anchor_left = 0.5
@@ -64,6 +66,9 @@ theme_override_font_sizes/font_size = 36
 text = "Quit"
 
 [node name="Minigames" type="Node" parent="."]
+
+[node name="FightingGame" parent="Minigames" instance=ExtResource("2_eyhtm")]
+position = Vector2(181, 549)
 
 [connection signal="button_up" from="StartPanel/VBoxContainer/Start" to="." method="_on_start_button_up"]
 [connection signal="button_up" from="StartPanel/VBoxContainer/Reset" to="." method="_on_reset_button_up"]
