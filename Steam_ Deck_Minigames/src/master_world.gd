@@ -8,6 +8,7 @@ var tennis = preload("res://scenes/tennis.tscn")
 var tails = preload("res://scenes/tails.tscn")
 var falling_blocks = preload("res://scenes/falling_blocks.tscn")
 var middle_defense = preload("res://scenes/middle_defense.tscn")
+var box_fighters = preload("res://scenes/fighting_game.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -45,6 +46,9 @@ func _on_start_button_up():
 		if "Middle Defense" == game:
 			minigames.add_child(middle_defense.instantiate())
 			currently_playing = "Middle Defense"
+		if "Box Fighters" == game:
+			minigames.add_child(box_fighters.instantiate())
+			currently_playing = "Box Fighters"
 
 
 

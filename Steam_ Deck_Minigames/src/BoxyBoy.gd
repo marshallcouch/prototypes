@@ -6,12 +6,13 @@ extends Node2D
 @onready var hitbox_shape = $Area2D/CollisionShape2D
 @onready var hitboxes_timer = $HitboxesTimer
 # Called when the node enters the scene tree for the first time.
+var player_number = -1
 
 func set_blocking(tf: bool):
 	hitbox_shape.disabled = tf
 
 
-signal hit(type:String)
+signal hit(type:String, player)
 func _ready():
 	animation_player.play("Stand")
 
@@ -37,7 +38,7 @@ func _on_hitboxes_timer_timeout():
 
 func _on_punch_hit_box_area_entered(area):
 	if area.is_in_group("HurtBox"):
-		hit.emit("Punch")
+		hit.emit("Punch", player_number)
 
 func play_animation(anim:String):
 	animation_player.play(anim)
@@ -45,4 +46,4 @@ func play_animation(anim:String):
 
 func _on_kick_hit_box_area_entered(area):
 	if area.is_in_group("HurtBox"):
-		hit.emit("Kick")
+		hit.emit("Kick", player_number)

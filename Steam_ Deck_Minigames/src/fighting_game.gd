@@ -6,11 +6,31 @@ var player_timeout = [0.0,0.0]
 const COMBO_TIMER = .5
 const MOVE_TIMOUT = .3
 
-const PLAYER_SPEED = 100.0
+@onready var scores = [$PlayerOneScore, $PlayerTwoScore]
+
+const PLAYER_SPEED = 200.0
+
+func reset():
+	for i in 2:
+		scores[i].text = "0"
+		players[i].play_animation("Stand")
+	players[0].position = Vector2(980,780)
+	players[1].position = Vector2(300,780)
+	
 
 func _ready():
-	pass # Replace with function body.
+	players[0].player_number = 0
+	players[1].player_number = 1
+	players[0].hit.connect(register_hit)
+	players[1].hit.connect(register_hit)
+	
 
+func register_hit(type, player):
+	var value = 2
+	if type == "Kick":
+		value = 1
+	scores[player].text = str(int(scores[player].text) + value)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -36,23 +56,27 @@ func _coffee_table_controls(player, delta):
 		if x > 0 :
 			if player ==0:
 				player_moves[player]["forward"] = COMBO_TIMER
-				players[player].position.x += delta * PLAYER_SPEED
+				if players[0].position.x + 100 <= players[1].position.x:
+					players[player].position.x += delta * PLAYER_SPEED
 				players[player].play_animation("Walk")
 				players[player].set_blocking(false)
 			else:
 				player_moves[player]["back"] = COMBO_TIMER
-				players[player].position.x += delta * PLAYER_SPEED
+				if players[1].position.x + 250 <= 1280:
+					players[player].position.x += delta * PLAYER_SPEED
 				players[player].play_animation("Block")
 				players[player].set_blocking(true)
 		else: 
 			if player == 0:
 				player_moves[player]["back"] = COMBO_TIMER
-				players[player].position.x -= delta * PLAYER_SPEED
+				if players[0].position.x +100 >= 0:
+					players[player].position.x -= delta * PLAYER_SPEED
 				players[player].play_animation("Block")
 				players[player].set_blocking(true)
 			else:
 				player_moves[player]["forward"] = COMBO_TIMER
-				players[player].position.x -= delta * PLAYER_SPEED
+				if players[1].position.x - 100 >= players[0].position.x:
+					players[player].position.x -= delta * PLAYER_SPEED
 				players[player].play_animation("Walk")
 				players[player].set_blocking(false)
 			
