@@ -13,6 +13,7 @@ func set_blocking(tf: bool):
 
 
 signal hit(type:String, player)
+
 func _ready():
 	animation_player.play("Stand")
 
@@ -41,7 +42,8 @@ func _on_punch_hit_box_area_entered(area):
 		hit.emit("Punch", player_number)
 
 func play_animation(anim:String):
-	animation_player.play(anim)
+	if anim != animation_player.current_animation:
+		animation_player.play(anim)
 
 
 func _on_kick_hit_box_area_entered(area):
