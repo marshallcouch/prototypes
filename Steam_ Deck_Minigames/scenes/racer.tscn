@@ -1,0 +1,195 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7ik3htdbtrot"]
+
+[ext_resource type="Script" path="res://src/racer.gd" id="1_v4kqu"]
+[ext_resource type="PackedScene" uid="uid://cf41vmqbbaoh4" path="res://scenes/racer/obstacleblock.tscn" id="2_u8yyc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwhln"]
+size = Vector2(3.5, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07p35"]
+size = Vector2(20, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvqay"]
+size = Vector2(21, 827)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbfue"]
+size = Vector2(1313.5, 29.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnisj"]
+size = Vector2(719, 403)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4knnn"]
+size = Vector2(306.5, 228)
+
+[node name="Racer" type="Node"]
+script = ExtResource("1_v4kqu")
+
+[node name="PlayerOne" type="CharacterBody2D" parent="." groups=["player_one"]]
+position = Vector2(100, 400)
+rotation = 1.5708
+
+[node name="PlayerShape" type="Polygon2D" parent="PlayerOne"]
+color = Color(0.666667, 0.666667, 1, 1)
+polygon = PackedVector2Array(-10, -5, 10, -5, 10, 5, -10, 5)
+
+[node name="PlayerOneArea" type="Area2D" parent="PlayerOne/PlayerShape"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOne/PlayerShape/PlayerOneArea"]
+position = Vector2(7.75, 0)
+shape = SubResource("RectangleShape2D_vwhln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOne"]
+shape = SubResource("RectangleShape2D_07p35")
+
+[node name="PlayerTwo" type="CharacterBody2D" parent="." groups=["player_two"]]
+position = Vector2(160, 400)
+rotation = 1.5708
+
+[node name="PlayerShape" type="Polygon2D" parent="PlayerTwo"]
+color = Color(1, 0.666667, 0.666667, 1)
+polygon = PackedVector2Array(-10, -5, 10, -5, 10, 5, -10, 5)
+
+[node name="PlayerOneArea" type="Area2D" parent="PlayerTwo/PlayerShape"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTwo/PlayerShape/PlayerOneArea"]
+position = Vector2(7.75, 0)
+shape = SubResource("RectangleShape2D_vwhln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTwo"]
+shape = SubResource("RectangleShape2D_07p35")
+
+[node name="border" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border"]
+position = Vector2(-10, 410)
+shape = SubResource("RectangleShape2D_uvqay")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="border"]
+position = Vector2(647.25, 812.25)
+shape = SubResource("RectangleShape2D_cbfue")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="border"]
+position = Vector2(1292, 400)
+shape = SubResource("RectangleShape2D_uvqay")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="border"]
+position = Vector2(639, -14)
+shape = SubResource("RectangleShape2D_cbfue")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="PlayerOneScore" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -592.0
+offset_top = -400.0
+offset_right = -551.0
+offset_bottom = -298.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerTwoScore" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 546.0
+offset_top = -398.0
+offset_right = 587.0
+offset_bottom = -296.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 72
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(270, 201, 270, 604, 989, 604, 989, 201)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Polygon2D/StaticBody2D"]
+position = Vector2(629.5, 402.5)
+shape = SubResource("RectangleShape2D_fnisj")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-13, 420, 270, 420)
+width = 2.0
+default_color = Color(1, 1, 1, 0.486275)
+
+[node name="Checkpoints" type="Node" parent="."]
+
+[node name="FinishLine" type="Area2D" parent="Checkpoints"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/FinishLine"]
+position = Vector2(135, 534)
+shape = SubResource("RectangleShape2D_4knnn")
+
+[node name="Checkpoint1" type="Area2D" parent="Checkpoints"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint1"]
+position = Vector2(1140.75, 598)
+shape = SubResource("RectangleShape2D_4knnn")
+
+[node name="Checkpoint3" type="Area2D" parent="Checkpoints"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoints/Checkpoint3"]
+position = Vector2(829, 109)
+shape = SubResource("RectangleShape2D_4knnn")
+
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="StaticBody2D" parent="Obstacles" instance=ExtResource("2_u8yyc")]
+position = Vector2(1032, 409)
+
+[node name="StaticBody2D2" parent="Obstacles" instance=ExtResource("2_u8yyc")]
+position = Vector2(1234, 409)
+
+[node name="StaticBody2D3" parent="Obstacles" instance=ExtResource("2_u8yyc")]
+position = Vector2(339, 199)
+
+[node name="StaticBody2D4" parent="Obstacles" instance=ExtResource("2_u8yyc")]
+position = Vector2(555, 30)
+
+[node name="StaticBody2D4" parent="Obstacles/StaticBody2D4" instance=ExtResource("2_u8yyc")]
+position = Vector2(0, 58)
+
+[node name="StaticBody2D5" parent="Obstacles" instance=ExtResource("2_u8yyc")]
+position = Vector2(339, 106)
+
+[node name="StaticBody2D6" parent="Obstacles" instance=ExtResource("2_u8yyc")]
+position = Vector2(421, 649)
+
+[node name="StaticBody2D6" parent="Obstacles/StaticBody2D6" instance=ExtResource("2_u8yyc")]
+position = Vector2(0, 53)
+
+[node name="StaticBody2D8" parent="Obstacles" instance=ExtResource("2_u8yyc")]
+position = Vector2(808, 649)
+
+[node name="StaticBody2D8" parent="Obstacles/StaticBody2D8" instance=ExtResource("2_u8yyc")]
+position = Vector2(0, 136)
+
+[node name="StaticBody2D9" parent="Obstacles" instance=ExtResource("2_u8yyc")]
+position = Vector2(1194, 409)
+
+[node name="StaticBody2D10" parent="Obstacles" instance=ExtResource("2_u8yyc")]
+position = Vector2(859, 166)
+
+[node name="StaticBody2D4" parent="Obstacles/StaticBody2D10" instance=ExtResource("2_u8yyc")]
+position = Vector2(0, -38)
+
+[connection signal="body_entered" from="Checkpoints/FinishLine" to="." method="_on_finish_line_body_entered"]
+[connection signal="body_entered" from="Checkpoints/Checkpoint1" to="." method="_on_checkpoint_1_body_entered"]
+[connection signal="body_entered" from="Checkpoints/Checkpoint3" to="." method="_on_checkpoint_3_body_entered"]
