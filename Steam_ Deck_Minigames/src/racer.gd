@@ -71,9 +71,6 @@ func _on_finish_line_body_entered(body):
 		if player_check_points[1] == [1,1]:
 			player_scores[1].text = str(int(player_scores[1].text)+1)
 			player_check_points[1] = [0,0]
-			
-			
-		
 
 
 func _on_checkpoint_1_body_entered(body):
