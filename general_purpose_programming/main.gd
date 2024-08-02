@@ -20,7 +20,7 @@ func main():
 			if i % j == 0:
 				is_prime = false
 				break
-			j -=1
+			j -=2
 		if is_prime:
 			call_deferred("pl",i)
 		await get_tree().create_timer(.00001).timeout
