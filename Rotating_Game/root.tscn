@@ -6,16 +6,16 @@
 [node name="Root" type="Node2D"]
 script = ExtResource("1_3slmm")
 
-[node name="Game Area" type="Node2D" parent="."]
-position = Vector2(0, 1560)
-rotation = -1.5708
-
-[node name="Sprite2D" type="Sprite2D" parent="Game Area"]
-position = Vector2(915, 119)
-texture = ExtResource("2_atg7a")
+[node name="Game Area" type="Area2D" parent="."]
 
 [node name="Sprite2D2" type="Sprite2D" parent="Game Area"]
 position = Vector2(918, 328)
+texture = ExtResource("2_atg7a")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Game Area"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Game Area/RigidBody2D"]
+position = Vector2(915, 119)
 texture = ExtResource("2_atg7a")
 
 [node name="Button" type="Button" parent="."]
