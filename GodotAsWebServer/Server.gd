@@ -36,11 +36,12 @@ func _process(delta):
 
 func _handle_request(client: StreamPeerTCP, request: String):
 	# HTML response with corrected diamond-shaped D-pad layout
-	print(request.length())
 	var client_id_loc:int = request.find("client=",request.length()-30)
 	var client_id:int = -1
 	if client_id_loc > 0:
 		client_id = int(request.substr(client_id_loc+7,request.length()-request.find("&",request.length()-30)))
+		
+		return
 	else:
 		used_clients+= 1
 		client_id = used_clients
@@ -65,20 +66,20 @@ func _handle_request(client: StreamPeerTCP, request: String):
 			.container {
 				display: flex;
 				justify-content: space-between;
-				width: 600px;
+				width: 100%;
 			}
 			.dpad {
 				position: relative;
-				width: 150px;
-				height: 150px;
+				width: 450px;
+				height: 450px;
 			}
 			#up, #down, #left, #right {
 				position: absolute;
-				width: 50px;
-				height: 50px;
+				width: 150px;
+				height: 150px;
 				border: none;
 				border-radius: 10px;
-				font-size: 16px;
+				font-size: 32px;
 				cursor: pointer;
 				color: #fff;
 			}
@@ -93,9 +94,9 @@ func _handle_request(client: StreamPeerTCP, request: String):
 				gap: 10px;
 			}
 			#select, #back {
-				width: 100px;
-				height: 50px;
-				font-size: 16px;
+				width: 200px;
+				height: 150px;
+				font-size: 32px;
 				border: none;
 				border-radius: 10px;
 				cursor: pointer;
@@ -107,27 +108,35 @@ func _handle_request(client: StreamPeerTCP, request: String):
 				opacity: 0.8;
 			}
 		</style>
+		<script>
+			function sendAction(action) {
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", "/", true);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhr.onload = function() {
+					if (xhr.status === 200) {
+						// You can process the response here
+						console.log('Response:', xhr.responseText);
+					}
+				};
+				xhr.send("action=" + action + "&client="""
+				
+	body += str(client_id)
+	body += """");
+			}
+		</script>
 	</head>
 	<body>
 		<div class="container">
-			<div class="dpad">
-				<form method="POST">	
-					<button id="up" name="action" value="up">Up</button>
-					<button id="down" name="action" value="down">Down</button>
-					<button id="left" name="action" value="left">Left</button>
-					<button id="right" name="action" value="right">Right</button>"""
-	body += "<input type=\"hidden\" name=\"client\" value=\"" + str(client_id) + "\" />"
-	body += """			
-				
-				</form>
+			<div class="dpad">	
+				<button id="up" onclick="sendAction('up')">Up</button>
+				<button id="down" onclick="sendAction('down')">Down</button>
+				<button id="left" onclick="sendAction('left')">Left</button>
+				<button id="right" onclick="sendAction('right')">Right</button>
 			</div>
 			<div class="buttons">
-				<form method="POST">
-					<button id="select" name="action" value="select">Start</button>
-					<button id="back" name="action" value="back">Back</button>"""
-	body += "<input type=\"hidden\" name=\"client\" value=\"" + str(client_id) + "\" />"
-	body += """		
-				</form>
+				<button id="select" onclick="sendAction('select')">Start</button>
+				<button id="back" onclick="sendAction('back')">Back</button>	
 			</div>
 		</div>
 	</body>
