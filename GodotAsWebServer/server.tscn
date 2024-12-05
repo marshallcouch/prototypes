@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://g03ahha2ugev"]
+[gd_scene load_steps=3 format=3 uid="uid://g03ahha2ugev"]
 
 [ext_resource type="Script" path="res://Server.gd" id="1_dae4v"]
+[ext_resource type="Texture2D" uid="uid://ukkfrsnmhkt8" path="res://icon.svg" id="2_ag0b0"]
 
 [node name="Server" type="Node"]
 script = ExtResource("1_dae4v")
+
+[node name="Grid" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(440, 440)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ag0b0")
